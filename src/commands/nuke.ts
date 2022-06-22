@@ -18,6 +18,7 @@ class Nuke extends BotCommand {
     const channel = interaction.channel as TextChannel
     await channel.clone()
     await channel.delete()
+    interaction.reply({})
   }
 }
 

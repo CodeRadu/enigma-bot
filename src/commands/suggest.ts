@@ -50,7 +50,7 @@ class Suggest extends BotCommand {
             {
               type: "TEXT_INPUT",
               customId: "content",
-              label: "content",
+              label: "Content",
               style: "PARAGRAPH",
               required: true
             }
@@ -67,8 +67,8 @@ class Suggest extends BotCommand {
     if (!modalInteraction) {
       const errorEmbed = new MessageEmbed()
         .setColor("RED")
-        .setDescription("Announcement cancelled.");
-      await interaction.followUp({ embeds: [errorEmbed] });
+        .setDescription("Suggestion cancelled.");
+      await interaction.followUp({ embeds: [errorEmbed], ephemeral: true });
       return;
     }
     const suggestionEmbed = new MessageEmbed()

@@ -78,7 +78,7 @@ class Announce extends BotCommand {
       const errorEmbed = new MessageEmbed()
         .setColor("RED")
         .setDescription("Announcement cancelled.");
-      await interaction.followUp({ embeds: [errorEmbed] });
+      await interaction.followUp({ embeds: [errorEmbed], ephemeral: true });
       return;
     }
 
