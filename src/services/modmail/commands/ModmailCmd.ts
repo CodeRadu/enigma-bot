@@ -26,7 +26,7 @@ import {
   getStaffEmbed,
   getSystemEmbed,
 } from "../util";
-import { getSpecialChannel } from "../../../database";
+import { getRole, getSpecialChannel, getRoleId } from "../../../database";
 import { maxModmails } from "../constants";
 import { Data } from "../../../structures/BotCommand";
 
@@ -178,9 +178,15 @@ export default class ModmailCommand extends BotCommand {
       guild.id,
       "modmail"
     );
+    const modmailRoleId = await getRoleId(guild.id, "modmail")
+    const modmailRole = await getRole(modmailRoleId!, "modmail")
     const parent = modmailChan?.parent;
     if (modmailChan === null || !parent) {
       throw new Error("Modmail has not be setup here yet.");
+    }
+
+    if (modmailRoleId === null) {
+      throw new Error("Modmail role has not be setup here yet.");
     }
 
     if (member !== null && modmailChan.id !== int.channelId) {
@@ -192,7 +198,18 @@ export default class ModmailCommand extends BotCommand {
 
     const channel = await parent.createChannel(
       `${target.username}-${target.discriminator}`,
-      { type: "GUILD_TEXT" }
+      {
+        type: "GUILD_TEXT", permissionOverwrites: [
+          {
+            id: modmailRoleId,
+            allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]
+          },
+          {
+            id: guild.roles.everyone.id,
+            deny: ["VIEW_CHANNEL"]
+          }
+        ]
+      }
     );
     const modmail = await openModmail(
       guild.id,

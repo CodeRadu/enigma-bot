@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      script: 'start.sh',
+      script: 'docker compose up --build',
       name: 'enigma',
       kill_timeout: 20000,
     },

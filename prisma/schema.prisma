@@ -17,6 +17,13 @@ model SpecialChannel {
   channelId String
 }
 
+model Role {
+  id String @id @default(uuid())
+  guildId String
+  label String
+  roleId String
+}
+
 model ModmailMessage {
   guildId      String
   channelId    String?

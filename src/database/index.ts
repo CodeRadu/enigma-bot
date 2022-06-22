@@ -8,3 +8,4 @@ export function getClient(): PrismaClient {
 
 export const connectToDatabase = () => client.$connect()
 export * from './channels'
+export * from './roles'

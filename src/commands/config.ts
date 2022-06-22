@@ -2,12 +2,19 @@ import { BotCommand } from "../structures";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { APIApplicationCommandOptionChoice, ChannelType } from "discord-api-types/v10";
 import { CommandInteraction } from "discord.js";
-import { removeSpecialChannel, setSpecialChannel, SpecialChannel } from "../database";
+import { removeSpecialChannel, Roles, setRole, setSpecialChannel, SpecialChannel } from "../database";
 import { Data } from "../structures/BotCommand";
 
 const specChannels: APIApplicationCommandOptionChoice<string>[] = [
   "announcements",
   "suggestions",
+  "modmail"
+].map((v) => ({
+  name: v,
+  value: v,
+}));
+
+const roles: APIApplicationCommandOptionChoice<string>[] = [
   "modmail"
 ].map((v) => ({
   name: v,
@@ -52,6 +59,24 @@ class Config extends BotCommand {
                 .setRequired(true)
             )
         )
+        .addSubcommand(sub =>
+          sub
+            .setName("setrole")
+            .setDescription("Set a role")
+            .addStringOption(opt =>
+              opt
+                .setName("label")
+                .setDescription("The role type")
+                .addChoices(...roles)
+                .setRequired(true)
+            )
+            .addRoleOption(opt =>
+              opt
+                .setName("role")
+                .setDescription("The role")
+                .setRequired(true)
+            )
+        )
         .toJSON() as Data,
       { requiredPerms: ["ADMINISTRATOR"] }
     )
@@ -73,6 +98,15 @@ class Config extends BotCommand {
     await removeSpecialChannel(guildId, label as SpecialChannel)
   }
 
+  public async setRole(
+    guildId: string,
+    interaction: CommandInteraction
+  ) {
+    const label = interaction.options.getString("label", true)
+    const role = interaction.options.getRole("role", true)
+    await setRole(guildId, label as Roles, role.id)
+  }
+
   public async execute(interaction: CommandInteraction) {
     const subCommand = interaction.options.getSubcommand();
     const { guildId } = interaction;
@@ -87,6 +121,9 @@ class Config extends BotCommand {
       case "delchannel":
         await this.delChannel(guildId, interaction);
         break;
+      case "setrole":
+        await this.setRole(guildId, interaction)
+        break
       default:
         await interaction.reply("How did we get here?");
         return;
