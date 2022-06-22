@@ -8,7 +8,8 @@ import { Data } from "../structures/BotCommand";
 const specChannels: APIApplicationCommandOptionChoice<string>[] = [
   "announcements",
   "suggestions",
-  "modmail"
+  "modmail",
+  "logger"
 ].map((v) => ({
   name: v,
   value: v,

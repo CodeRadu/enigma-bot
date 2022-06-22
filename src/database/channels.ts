@@ -6,6 +6,7 @@ export type SpecialChannel =
   | "announcements"
   | "suggestions"
   | "modmail"
+  | "logger"
 
 async function getChannelId(guildId: string, label: SpecialChannel) {
   const client = getClient()
