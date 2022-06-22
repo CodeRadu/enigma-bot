@@ -9,6 +9,7 @@ services:
     stop_signal: SIGINT
   postgres:
     image: postgres:14.2-alpine
+    restart: always
     environment:
       - POSTGRES_PASSWORD=randompassword
       - PGDATA=/var/lib/postgresql/data/pgdata
