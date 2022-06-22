@@ -11,8 +11,8 @@ datasource db {
 }
 
 model SpecialChannel {
+  id String @id @default(uuid())
   guildId String
   label String
   channelId String
-  id String @id @default(uuid())
 }
