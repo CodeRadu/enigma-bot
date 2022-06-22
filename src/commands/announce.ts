@@ -8,6 +8,7 @@ import {
 
 import { getSpecialChannel } from "../database";
 import { BotCommand } from "../structures";
+import { Data } from "../structures/BotCommand";
 
 class Announce extends BotCommand {
   constructor() {
@@ -15,7 +16,7 @@ class Announce extends BotCommand {
       new SlashCommandBuilder()
         .setName("announce")
         .setDescription("Write an announcement for the server.")
-        .toJSON(),
+        .toJSON() as Data,
       { timeout: 6000, requiredPerms: ["ADMINISTRATOR"] }
     );
   }

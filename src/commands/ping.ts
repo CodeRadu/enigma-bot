@@ -2,6 +2,7 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed } from "discord.js";
 
 import { BotCommand } from "../structures";
+import { Data } from "../structures/BotCommand";
 
 class Ping extends BotCommand {
   constructor() {
@@ -9,7 +10,7 @@ class Ping extends BotCommand {
       new SlashCommandBuilder()
         .setName("ping")
         .setDescription("Pings the bot.")
-        .toJSON(),
+        .toJSON() as Data,
     );
   }
 

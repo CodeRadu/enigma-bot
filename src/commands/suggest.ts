@@ -2,6 +2,7 @@ import { BotCommand } from "../structures";
 import { SlashCommandBuilder } from "@discordjs/builders";
 import { CommandInteraction, MessageEmbed, ModalSubmitInteraction, TextChannel } from "discord.js";
 import { getSpecialChannel } from "../database";
+import { Data } from "../structures/BotCommand";
 
 class Suggest extends BotCommand {
   constructor() {
@@ -9,7 +10,7 @@ class Suggest extends BotCommand {
       new SlashCommandBuilder()
         .setName("suggest")
         .setDescription("Send a suggestion")
-        .toJSON(),
+        .toJSON() as Data,
       { timeout: 60000 }
     )
   }

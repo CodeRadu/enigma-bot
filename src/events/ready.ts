@@ -5,6 +5,9 @@ import { GuildAuditLogs } from "discord.js";
 import { commandFiles } from "../files";
 import { Bot, BotCommand } from "../structures";
 import { TypedEvent } from "../types";
+import modmailCmds from '../services/modmail'
+
+export let helpstring = ""
 
 export default TypedEvent({
   eventName: "ready",
@@ -12,7 +15,9 @@ export default TypedEvent({
   run: async (client: Bot) => {
     client.logger.console.info(`Logged in as ${client.user?.tag}.`);
 
-    const commandArr: BotCommand[] = [];
+    const commandArr: BotCommand[] = [
+      ...modmailCmds()
+    ];
 
     let tasks: Promise<unknown>[] = [];
     for (let i = 0; i < commandFiles.length; i += 1) {
@@ -27,6 +32,7 @@ export default TypedEvent({
           );
         } else {
           commandArr.push(command);
+          helpstring += `${command.data.name}: ${command.data.description}\n`
         }
       });
       tasks.push(task);

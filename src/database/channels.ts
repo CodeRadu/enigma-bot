@@ -5,6 +5,7 @@ import { Bot } from "../structures"
 export type SpecialChannel =
   | "announcements"
   | "suggestions"
+  | "modmail"
 
 async function getChannelId(guildId: string, label: SpecialChannel) {
   const client = getClient()

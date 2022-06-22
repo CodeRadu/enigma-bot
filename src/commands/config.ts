@@ -3,10 +3,12 @@ import { SlashCommandBuilder } from "@discordjs/builders";
 import { APIApplicationCommandOptionChoice, ChannelType } from "discord-api-types/v10";
 import { CommandInteraction } from "discord.js";
 import { removeSpecialChannel, setSpecialChannel, SpecialChannel } from "../database";
+import { Data } from "../structures/BotCommand";
 
 const specChannels: APIApplicationCommandOptionChoice<string>[] = [
   "announcements",
-  "suggestions"
+  "suggestions",
+  "modmail"
 ].map((v) => ({
   name: v,
   value: v,
@@ -17,7 +19,7 @@ class Config extends BotCommand {
     super(
       new SlashCommandBuilder()
         .setName("config")
-        .setDescription("Changes and gets the bot\'s config")
+        .setDescription("Changes the bot\'s config")
         .addSubcommand((sub) =>
           sub
             .setName("setchannel")
@@ -50,7 +52,7 @@ class Config extends BotCommand {
                 .setRequired(true)
             )
         )
-        .toJSON(),
+        .toJSON() as Data,
       { requiredPerms: ["ADMINISTRATOR"] }
     )
   }
@@ -89,7 +91,7 @@ class Config extends BotCommand {
         await interaction.reply("How did we get here?");
         return;
     }
-    await interaction.reply("Done");
+    await interaction.reply({ ephemeral: true, content: "Done" });
   }
 }
 
