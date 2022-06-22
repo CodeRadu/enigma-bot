@@ -1,0 +1,12 @@
+services:
+  postgres:
+    image: postgres:14.2-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=randompassword
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - 'data:/var/lib/postgresql/data/pgdata'
+volumes:
+  data: {}

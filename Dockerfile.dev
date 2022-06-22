@@ -1,0 +1,7 @@
+FROM node:16-alpine
+
+WORKDIR /opt/app
+
+VOLUME [ "/opt/app" ]
+
+CMD sh ./scripts/dev.sh

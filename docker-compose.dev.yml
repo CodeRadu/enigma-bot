@@ -1,0 +1,18 @@
+services:
+  bot-dev:
+    build:
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+      - .:/opt/app
+    links:
+      - postgres
+  postgres:
+    image: postgres:14.2-alpine
+    environment:
+      - POSTGRES_PASSWORD=randompassword
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - 'data:/var/lib/postgresql/data/pgdata'
+volumes:
+  data: {}

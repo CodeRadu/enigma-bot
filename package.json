@@ -1,0 +1,40 @@
+{
+  "name": "enigma-bot",
+  "version": "1.0.0",
+  "description": "A discord bot",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsnd --respawn --watch .env --cache-directory tmp --exit-child src/index.ts",
+    "start": "NODE_ENV=production node .",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeRadu/enigma-bot.git"
+  },
+  "keywords": [
+    "Discord",
+    "bot"
+  ],
+  "author": "Radu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CodeRadu/enigma-bot/issues"
+  },
+  "homepage": "https://github.com/CodeRadu/enigma-bot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^0.5.0",
+    "@prisma/client": "^3.15.2",
+    "discord-api-types": "^0.34.0",
+    "discord.js": "^13.8.0",
+    "dotenv": "^16.0.1",
+    "pino": "^8.0.0",
+    "pino-pretty": "^8.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.18.0",
+    "prisma": "^3.15.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.7.4"
+  }
+}
