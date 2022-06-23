@@ -1,5 +1,7 @@
 FROM node:16-alpine AS base
 
+RUN apk add ffmpeg python3 make build-base
+
 WORKDIR /opt/app
 COPY package*.json .
 
