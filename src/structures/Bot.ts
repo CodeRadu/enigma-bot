@@ -1,3 +1,4 @@
+import { Player } from "discord-player";
 import { Client, Collection, GuildAuditLogsEntry, Intents } from "discord.js";
 import { eventFiles } from "../files";
 import { IBotEvent } from "../types";
@@ -12,6 +13,7 @@ export default class Bot extends Client<true> {
     string,
     GuildAuditLogsEntry<"MESSAGE_DELETE">
   >;
+  player: Player | undefined;
   constructor() {
     super({
       intents: [
@@ -20,6 +22,7 @@ export default class Bot extends Client<true> {
         Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
         Intents.FLAGS.GUILD_MEMBERS,
         Intents.FLAGS.GUILD_PRESENCES,
+        Intents.FLAGS.GUILD_VOICE_STATES
       ],
       partials: ["MESSAGE", "CHANNEL", "REACTION"],
     });

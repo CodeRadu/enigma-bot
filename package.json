@@ -23,9 +23,12 @@
   },
   "homepage": "https://github.com/CodeRadu/enigma-bot#readme",
   "dependencies": {
+    "@discordjs/opus": "^0.5.3",
     "@discordjs/rest": "^0.5.0",
+    "@discordjs/voice": "^0.10.0",
     "@prisma/client": "^3.15.2",
     "discord-api-types": "^0.34.0",
+    "discord-player": "^5.2.2",
     "discord.js": "^13.8.0",
     "dotenv": "^16.0.1",
     "pino": "^8.0.0",

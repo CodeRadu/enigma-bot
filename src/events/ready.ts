@@ -6,6 +6,7 @@ import { commandFiles } from "../files";
 import { Bot, BotCommand } from "../structures";
 import { TypedEvent } from "../types";
 import modmailCmds from '../services/modmail'
+import { Player } from "discord-player";
 
 export let helpstring = ""
 
@@ -14,6 +15,7 @@ export default TypedEvent({
   once: true,
   run: async (client: Bot) => {
     client.logger.console.info(`Logged in as ${client.user?.tag}.`);
+    client.player = new Player(client)
 
     const commandArr: BotCommand[] = [
       ...modmailCmds()
