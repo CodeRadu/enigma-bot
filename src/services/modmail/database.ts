@@ -157,7 +157,7 @@ export function countOpenModmails(guildId: string): Promise<number> {
   const client = getClient();
   return client.modmail.count({
     where: {
-      guildId,
+      guildId: guildId,
       closed: false,
     },
   });

@@ -11,17 +11,17 @@ datasource db {
 }
 
 model SpecialChannel {
-  id String @id @default(uuid())
-  guildId String
-  label String
+  id        String @id @default(uuid())
+  guildId   String
+  label     String
   channelId String
 }
 
 model Role {
-  id String @id @default(uuid())
+  id      String @id @default(uuid())
   guildId String
-  label String
-  roleId String
+  label   String
+  roleId  String
 }
 
 model ModmailMessage {

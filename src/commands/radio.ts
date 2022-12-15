@@ -100,7 +100,9 @@ class Radio extends BotCommand {
   }
 
   public async execute(interaction: CommandInteraction, client: Bot) {
-    const subcommandGroup = interaction.options.getSubcommandGroup()
+    interaction.reply("Radio is currently broken.")
+    return
+    /*const subcommandGroup = interaction.options.getSubcommandGroup()
     const subCommand = interaction.options.getSubcommand()
     const { guildId } = interaction
     if (!guildId) {
@@ -280,7 +282,7 @@ class Radio extends BotCommand {
       default:
         await interaction.reply("How did we get here?");
         return;
-    }
+    }*/
   }
 }
 

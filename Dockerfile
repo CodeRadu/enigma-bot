@@ -1,6 +1,6 @@
 FROM node:16-alpine AS base
 
-RUN apk add ffmpeg python3 make build-base
+RUN apk add ffmpeg python3 make build-base libc6-compat openssl libressl-dev
 
 WORKDIR /opt/app
 COPY package*.json ./

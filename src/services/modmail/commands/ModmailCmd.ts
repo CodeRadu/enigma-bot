@@ -179,10 +179,13 @@ export default class ModmailCommand extends BotCommand {
       "modmail"
     );
     const modmailRoleId = await getRoleId(guild.id, "modmail")
-    const modmailRole = await getRole(modmailRoleId!, "modmail")
+    if (!modmailRoleId) {
+      throw new Error("Modmail has not been setup yet")
+    }
+    const modmailRole = await getRole(modmailRoleId, "modmail")
     const parent = modmailChan?.parent;
     if (modmailChan === null || !parent) {
-      throw new Error("Modmail has not be setup here yet.");
+      throw new Error("Modmail has not been setup yet");
     }
 
     if (modmailRoleId === null) {
